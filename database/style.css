@@ -1,0 +1,37 @@
+body {
+  font-family: 'Rubik', sans-serif;
+}
+
+.content-table {
+  border-collapse: collapse;
+  margin: 15px 11% 15px 11%;
+  font-size: 0.9em;
+  width: 78%;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-weight: 600;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 8px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}

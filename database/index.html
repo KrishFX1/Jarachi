@@ -1,0 +1,77 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Database</title>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="./1419095_google_translate_translator_icon.ico">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/sql-wasm.js"></script>
+</head>
+
+<body>
+  <table id="table" class="content-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>English</th>
+        <th>Jarachi</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+</body>
+
+<script>
+
+  var db, SQL
+  var sqlPromise
+
+  async function a() {
+
+    SQL = await initSqlJs({
+      // Required to load the wasm binary asynchronously. Of course, you can host it wherever you want
+      // You can omit locateFile completely when running in node
+      locateFile: file => `sql-wasm.wasm`
+    });
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', "https://raw.githubusercontent.com/KrishFX1/Jarachi/main/Language.sqlite", true);
+    xhr.responseType = 'arraybuffer';
+
+    xhr.onload = function (e) {
+      var uInt8Array = new Uint8Array(this.response);
+      db = new SQL.Database(uInt8Array);
+      var res = db.exec(`SELECT * FROM language;`)
+
+      for (let i = 0; i < res[0].values.length; i++) {
+        var eng = res[0].values[i][0]
+        var Jarachi = res[0].values[i][1]
+        addRow(i + 1, eng, Jarachi)
+      }
+
+    };
+    xhr.send();
+  }
+  a()
+
+  function addRow(index, eng, Jarachi) {
+    var myHtmlContent = `<tr>
+        <td>${index}.</td>
+        <td>${eng}</td>
+        <td>${Jarachi}</td>
+      </tr>`
+    var tableRef = document.getElementById('table').getElementsByTagName('tbody')[0];
+
+    var newRow = tableRef.insertRow(tableRef.rows.length);
+    newRow.innerHTML = myHtmlContent;
+  }
+
+
+</script>
+
+
+</html>
