@@ -6,10 +6,10 @@ async function a() {
     SQL = await initSqlJs({
         // Required to load the wasm binary asynchronously. Of course, you can host it wherever you want
         // You can omit locateFile completely when running in node
-        locateFile: file => `Database\\Git\\database\\sql-wasm.wasm`
+        locateFile: file => `database\\sql-wasm.wasm`
     });
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', "https://raw.githubusercontent.com/KrishFX1/Jarachi/main/Language.sqlite", true);
+    xhr.open('GET', "https://raw.githubusercontent.com/KrishFX1/Jarachi/main/Content/Language.sqlite", true);
     xhr.responseType = 'arraybuffer';
 
     xhr.onload = function (e) {
