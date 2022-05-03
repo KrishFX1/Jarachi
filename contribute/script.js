@@ -1010,12 +1010,12 @@ var translations = [
 ]
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAKRP4LAKzaglHkHJUNtdC91TaPCL4lCxM",
-  authDomain: "notes-35d02.firebaseapp.com",
-  projectId: "notes-35d02",
-  storageBucket: "notes-35d02.appspot.com",
-  messagingSenderId: "394958681149",
-  appId: "1:394958681149:web:4c88898d12580cd7ada654"
+  apiKey: "AIzaSyDrKo3-iWO-H6czCQS4r-0PBLzWeo9509s",
+  authDomain: "diary-jarachi.firebaseapp.com",
+  projectId: "diary-jarachi",
+  storageBucket: "diary-jarachi.appspot.com",
+  messagingSenderId: "403216367824",
+  appId: "1:403216367824:web:3210435e905c1628439ed5"
 };
 firebase.initializeApp(firebaseConfig);
 const firestore = firebase.firestore();
