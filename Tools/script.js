@@ -91,6 +91,12 @@ submit.addEventListener("click", (e) => {
 
         }
         translatedText.value = finalSentence[0]
+        firestore.collection("Translated").add({
+            "from": "Jarachi",
+            "to": "English",
+            "translated": translatedText.value,
+            "timestamp": Date.now()
+        })
         finalSentence[0] = ''
     }
 
@@ -141,12 +147,6 @@ WHERE english='${word}';`)
     result.length > 0 ? translatedText = `${db.exec(`SELECT * FROM language
 WHERE english='${word}';`)[0].values[0][1]}` : translatedText = "[..]"
 
-    firestore.collection("Translated").add({
-        "from": "Jarachi",
-        "to": "English",
-        "translated": word,
-        "timestamp": Date.now()
-    })
 
     return translatedText
 }

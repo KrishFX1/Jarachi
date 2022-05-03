@@ -92,6 +92,12 @@ submit.addEventListener("click", (e) => {
 
         }
         translatedText.value = finalSentence[0]
+        firestore.collection("Translated").add({
+            "from": "Jarachi",
+            "to": "English",
+            "translated": translatedText.value,
+            "timestamp": Date.now()
+        })
         finalSentence[0] = ''
     }
 
@@ -143,12 +149,7 @@ function JarachitoEng(word) {
 WHERE jarachi='${word}';`)[0].values[0][0]}` : translatedText = "[..]"
 
 
-    firestore.collection("Translated").add({
-        "from": "Jarachi",
-        "to": "English",
-        "translated": word,
-        "timestamp": Date.now()
-    })
+
 
     return translatedText
 }
