@@ -20,6 +20,16 @@ async function a() {
 }
 a()
 
+const firebaseConfig = {
+    apiKey: "AIzaSyDrKo3-iWO-H6czCQS4r-0PBLzWeo9509s",
+    authDomain: "diary-jarachi.firebaseapp.com",
+    projectId: "diary-jarachi",
+    storageBucket: "diary-jarachi.appspot.com",
+    messagingSenderId: "403216367824",
+    appId: "1:403216367824:web:3210435e905c1628439ed5"
+};
+firebase.initializeApp(firebaseConfig);
+const firestore = firebase.firestore();
 
 
 var input = document.getElementById("input")
@@ -131,5 +141,14 @@ function JarachitoEng(word) {
     WHERE jarachi= "${word}";`)
     result.length > 0 ? translatedText = `${db.exec(`SELECT * FROM language
 WHERE jarachi='${word}';`)[0].values[0][0]}` : translatedText = "[..]"
+
+
+    firestore.collection("Translated").add({
+        "from": "Jarachi",
+        "to": "English",
+        "translated": word,
+        "timestamp": Date.now()
+    })
+
     return translatedText
 }
